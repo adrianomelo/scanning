@@ -9,11 +9,13 @@ uri = com.adrianomelo
 # Input
 SOURCES += \
     scanning_plugin.cpp \
-    scanning.cpp
+    scanning.cpp \
+    scangroup.cpp
 
 HEADERS += \
     scanning_plugin.h \
-    scanning.h
+    scanning.h \
+    scangroup.h
 
 OTHER_FILES = qmldir
 
