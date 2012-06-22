@@ -1,19 +1,22 @@
 #ifndef SCANNING_H
 #define SCANNING_H
 
-#include <QtDeclarative/QDeclarativeItem>
+#include <QObject>
 
-class Scanning : public QDeclarativeItem
+class Scanning : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Scanning)
-    
-public:
-    Scanning(QDeclarativeItem *parent = 0);
+
+private:
+    Scanning(QObject *parent = 0);
     ~Scanning();
+
+    static Scanning *m_instance;
+
+public:
+    static Scanning *instance();
+
 };
 
-QML_DECLARE_TYPE(Scanning)
-
 #endif // SCANNING_H
-
