@@ -1,3 +1,7 @@
+moc*
+*.pro.user
+Makefile
+
 # Compiled Object files
 *.slo
 *.lo
