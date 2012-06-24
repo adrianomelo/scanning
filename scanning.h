@@ -1,6 +1,7 @@
 #ifndef SCANNING_H
 #define SCANNING_H
 
+#include "selectable.h"
 #include <QObject>
 
 class Scanning : public QObject
@@ -17,6 +18,8 @@ private:
 public:
     static Scanning *instance();
 
+    void registerItem(Selectable *item);
+    void unregisterItem(Selectable *item);
 };
 
 #endif // SCANNING_H

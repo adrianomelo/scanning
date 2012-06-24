@@ -8,11 +8,13 @@ uri = com.adrianomelo
 
 # Input
 SOURCES += \
+    selectable.cpp \
     scanning_plugin.cpp \
     scanning.cpp \
     scangroup.cpp
 
 HEADERS += \
+    selectable.h \
     scanning_plugin.h \
     scanning.h \
     scangroup.h

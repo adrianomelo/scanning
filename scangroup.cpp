@@ -1,17 +1,13 @@
+#include "selectable.h"
 #include "scangroup.h"
+#include "scanning.h"
 
 ScanGroup::ScanGroup(QDeclarativeItem *parent) :
-    QDeclarativeItem(parent)
+    Selectable(parent)
 {
 }
 
-bool ScanGroup::selected()
+ScanGroup::~ScanGroup()
 {
-    return m_selected;
 }
 
-void ScanGroup::setSelected(bool selected)
-{
-    m_selected = selected;
-    emit selectedChanged();
-}

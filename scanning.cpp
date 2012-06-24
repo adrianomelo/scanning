@@ -1,4 +1,6 @@
+#include "selectable.h"
 #include "scanning.h"
+#include "scangroup.h"
 
 #include <QObject>
 
@@ -20,3 +22,14 @@ Scanning *Scanning::instance()
 
     return m_instance;
 }
+
+void Scanning::registerItem(Selectable *item)
+{
+    qDebug() << "register " << item;
+}
+
+void Scanning::unregisterItem(Selectable *item)
+{
+    qDebug() << "unregister " << item;
+}
+
