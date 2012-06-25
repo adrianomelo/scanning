@@ -3,6 +3,8 @@
 
 #include "selectable.h"
 #include <QObject>
+#include <QList>
+#include <QHash>
 
 class Scanning : public QObject
 {
@@ -14,6 +16,10 @@ private:
     ~Scanning();
 
     static Scanning *m_instance;
+    //QList<Selectable *> m_scanningList;
+
+private slots:
+    void itemParentChanged();
 
 public:
     static Scanning *instance();
