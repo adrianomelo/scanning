@@ -28,31 +28,37 @@ Scanning *Scanning::instance()
 void Scanning::itemParentChanged()
 {
     QObject *item = this->sender();
-    QObject *itemParent = item->parent();
+    Selectable *itemScan = qobject_cast<Selectable *>(item);
 
-    /*if (itemParent) {
-        Selectable *parent = qobject_cast<Selectable *>(itemParent);
-        qDebug() << m_selectables.contains(parent);
-    }*/
+    QObject * p = item->parent();
+    while (p) {
+        Selectable *parent = qobject_cast<Selectable *>(p);
 
-    qDebug() << "item " << item << " parent " << itemParent;
+        if (m_scanning.contains(parent)) {
+            QList<Selectable *> * list = m_scanning.value(parent);
+            list->append(itemScan);
+            break;
+        }
+
+        p = p->parent();
+    }
 }
 
 void Scanning::registerItem(Selectable *item)
 {
-    /*if (!m_selectables.contains(item)) {
-        QList<Selectable *> *list = new QList<Selectable *>();
-        m_selectables.insert(item, list);
-    }*/
+    if (m_scanning.isEmpty())
+        m_root = item;
 
+    //m_selectables.append(item);
+    m_scanning.insert(item, new QList<Selectable *>());
     QDeclarativeItem::connect(item, SIGNAL(parentChanged()),
-                     this, SLOT(itemParentChanged()));
+                              this, SLOT(itemParentChanged()));
 }
 
 void Scanning::unregisterItem(Selectable *item)
 {
-    //m_selectables.remove(item);
+    //m_selectables.removeOne(item);
     QDeclarativeItem::disconnect(item, SIGNAL(parentChanged()),
-                     this, SLOT(itemParentChanged()));
+                                 this, SLOT(itemParentChanged()));
 }
 

@@ -16,7 +16,10 @@ private:
     ~Scanning();
 
     static Scanning *m_instance;
-    //QList<Selectable *> m_scanningList;
+
+    Selectable *m_root;
+    //QList<Selectable *> m_selectables;
+    QHash<Selectable *, QList <Selectable *> *> m_scanning;
 
 private slots:
     void itemParentChanged();
