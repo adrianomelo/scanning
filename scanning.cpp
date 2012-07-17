@@ -9,7 +9,7 @@
 Scanning *Scanning::m_instance = 0;
 
 Scanning::Scanning(QObject *parent):
-    QObject(parent)
+    QObject(parent), m_selected(0), m_root(0)
 {
 }
 
@@ -42,6 +42,8 @@ void Scanning::itemParentChanged()
 
         p = p->parent();
     }
+
+    qDebug() << "parentChanged " << p << " item " << item;
 }
 
 void Scanning::registerItem(Selectable *item)
@@ -60,5 +62,21 @@ void Scanning::unregisterItem(Selectable *item)
     //m_selectables.removeOne(item);
     QDeclarativeItem::disconnect(item, SIGNAL(parentChanged()),
                                  this, SLOT(itemParentChanged()));
+}
+
+void Scanning::select(Selectable *item)
+{
+    if (!item)
+        return;
+
+    m_selected = item;
+}
+
+void Scanning::unselect(Selectable *item)
+{
+    if (!item)
+        return;
+
+    m_selected = 0;
 }
 

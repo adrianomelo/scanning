@@ -11,12 +11,14 @@ SOURCES += \
     selectable.cpp \
     scanning_plugin.cpp \
     scanning.cpp \
+    scanningcontrol.cpp \
     scangroup.cpp
 
 HEADERS += \
     selectable.h \
     scanning_plugin.h \
     scanning.h \
+    scanningcontrol.h \
     scangroup.h
 
 OTHER_FILES = qmldir

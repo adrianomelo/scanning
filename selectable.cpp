@@ -2,7 +2,7 @@
 #include "scanning.h"
 
 Selectable::Selectable(QDeclarativeItem *parent) :
-    QDeclarativeItem(parent)
+    QDeclarativeItem(parent), m_selected(false)
 {
     Scanning *scanning = Scanning::instance();
     scanning->registerItem(this);

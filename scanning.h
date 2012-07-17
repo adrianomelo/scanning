@@ -17,18 +17,23 @@ private:
 
     static Scanning *m_instance;
 
-    Selectable *m_root;
-    //QList<Selectable *> m_selectables;
-    QHash<Selectable *, QList <Selectable *> *> m_scanning;
-
+protected:
 private slots:
     void itemParentChanged();
 
 public:
+    Selectable *m_selected;
+    Selectable *m_root;
+    //QList<Selectable *> m_selectables;
+    QHash<Selectable *, QList <Selectable *> *> m_scanning;
+
     static Scanning *instance();
 
     void registerItem(Selectable *item);
     void unregisterItem(Selectable *item);
+
+    void select(Selectable *item);
+    void unselect(Selectable *item);
 };
 
 #endif // SCANNING_H
