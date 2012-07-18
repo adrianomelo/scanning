@@ -12,14 +12,10 @@ ScanningControl::ScanningControl(QObject *parent) :
     if (!scanning)
         return;
 
-    qDebug() << "scanningcontrol root " << scanning->m_root;
-
     if (scanning->m_root && !scanning->m_selected) {
         scanning->m_selected = scanning->m_root;
         scanning->select(scanning->m_selected);
     }
-
-    qDebug() << "scanningcontrol";
 }
 
 ScanningControl::~ScanningControl()
@@ -37,8 +33,6 @@ void ScanningControl::next()
         return;
 
     QList<Selectable *> *list = scanning->m_scanning.value(scanning->m_selected);
-
-    qDebug() << "m_index " << m_index << " list size " << list->size();
 
     if (list->size() == 0) {
         scanning->select(scanning->m_root);
@@ -66,11 +60,17 @@ void ScanningControl::select()
 
     QList<Selectable *> *list = scanning->m_scanning.value(scanning->m_selected);
 
-    qDebug() << "Selected m_index " << m_index << " list size " << list->size();
-
     Selectable *selected = list->at(m_index);
-    scanning->select(selected);
     selected->setSelected(false);
+
+    QList<Selectable *> *listSelected = scanning->m_scanning.value(selected);
+    if (listSelected->size() == 0) {
+        qDebug() << "Action from " << selected;
+        scanning->select(scanning->m_root);
+    } else {
+        scanning->select(selected);
+    }
+
     m_index = 0;
 }
 
