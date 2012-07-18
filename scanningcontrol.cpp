@@ -44,11 +44,12 @@ void ScanningControl::next()
         scanning->select(scanning->m_root);
     } else {
         Selectable *nowSelected = list->at(m_index);
-        nowSelected->setSelected(false);
 
-        m_index = (m_index + 1) % list->size();
+        m_index = nowSelected->selected() ? (m_index + 1) % list->size() : 0;
 
         Selectable *nextSelected = list->at(m_index);
+
+        nowSelected->setSelected(false);
         nextSelected->setSelected(true);
     }
 }
